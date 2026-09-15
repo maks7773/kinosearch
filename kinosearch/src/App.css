@@ -59,6 +59,21 @@ button:hover {
   background: #5849c2;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  font-size: 26px;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  font-size: 24px;
+  color: #ff4040;
+}
+
 .movies-grid {
   margin-top: 20px;
   display: grid;
