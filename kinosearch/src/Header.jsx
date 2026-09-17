@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Header({ query, setQuery, searchMovies}) {
   
 
@@ -8,7 +10,7 @@ function Header({ query, setQuery, searchMovies}) {
         <input value={query} onChange={(e) => setQuery(e.target.value)} />
         <button onClick={searchMovies}>Искать</button>
       </div>
-      <button>Войти</button>
+      <Link to="/favorites" className="favorites-link">❤️ Избранное</Link>
     </header>
   );
 }

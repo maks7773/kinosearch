@@ -94,6 +94,19 @@ button:hover {
   transform: translateY(-6px);
 }
 
+.favorites-link {
+  display: inline-block;
+  margin: 20px;
+  color: #6c5ce7;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.favorites-link:hover {
+  color: #a29bfe;
+}
+
 .poster {
   width: 100%;
   height: 330px;
