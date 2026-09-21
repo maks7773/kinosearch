@@ -12,11 +12,16 @@ function HomePage() {
   const [error, setError] = useState(null);
 
   async function searchMovies() {
+    if (query.trim() === "") {
+      setError("Введите название фильма!")
+      return
+    }
+
     setError(null);
     setLoading(true);
     try {
       const response = await fetch(
-        `http://www.omdbapi.com/?i=tt3896198&apikey=df0fd343&s=${query}`,
+       `http://www.omdbapi.com/?apikey=df0fd343&s=${query}`,
       );
       const data = await response.json();
 
@@ -48,11 +53,7 @@ function HomePage() {
     setMovies(sortedMovies);
   }
 
-  function sortByRate() {
-    const sortedMovies = [...movies].sort(
-      (a,b) => Number(b.imdbRating) - Number(a.imdbRating)
-    )
-  }
+  
 
   return (
     <div>
@@ -62,7 +63,7 @@ function HomePage() {
       <div className="filters">
         <button onClick={() => sortByNew()}>Сначала новые</button>
         <button onClick={() => sortByOld()}>Сначала старые</button>
-        <button onClick={() => sortByRate()}>По рейтингу</button>
+        
       </div>
 
       <div className="movies-grid">
