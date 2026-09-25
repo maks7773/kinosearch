@@ -11,52 +11,6 @@ function HomePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  async function loadRandomMovies() {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const searchWords = [
-        "action",
-        "comedy",
-        "drama",
-        "horror",
-        "thriller",
-        "fantasy",
-        "adventure",
-        "sci-fi",
-      ];
-
-      const requests = searchWords.map(async (word) => {
-        const randomPage = Math.floor(Math.random() * 5) + 1;
-
-        const response = await fetch(
-          `https://www.omdbapi.com/?apikey=df0fd343&s=${word}&page=${randomPage}`,
-        );
-
-        const data = await response.json();
-
-        return data.Search || [];
-      });
-
-      const results = await Promise.all(requests);
-
-      const allMovies = results.flat();
-
-      const shuffledMovies = allMovies.sort(() => Math.random() - 0.5);
-
-      setMovies(shuffledMovies.slice(0, 20));
-    } catch (error) {
-      setError("something wrong");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    loadRandomMovies();
-  }, []);
-
   async function searchMovies() {
     if (query.trim() === "") {
       setError("Введите название фильма!");
@@ -99,6 +53,8 @@ function HomePage() {
     setMovies(sortedMovies);
   }
 
+  
+
   return (
     <div>
       <Header query={query} setQuery={setQuery} searchMovies={searchMovies} />
@@ -107,6 +63,7 @@ function HomePage() {
       <div className="filters">
         <button onClick={() => sortByNew()}>Сначала новые</button>
         <button onClick={() => sortByOld()}>Сначала старые</button>
+        
       </div>
 
       <div className="movies-grid">
